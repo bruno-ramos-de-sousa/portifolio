@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+    --off-white: #f8f8f8;
+    --primary-black: #121212;
+    --secondary-black: #212121;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  color: #333;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
