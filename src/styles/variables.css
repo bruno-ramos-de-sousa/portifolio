@@ -1,0 +1,15 @@
+:root {
+    --off-white: #f8f8f8;
+    --primary-black: #121212;
+    --secondary-black: #212121;
+
+    --espacamento-lg : 2rem;
+    --espacamento-md : 1.5rem;
+    --espacamento-sm : 1rem;
+
+    --font-size-lg : 1.5rem;
+    --font-size-md : 1.2rem;
+    --font-size-sm : 1rem;
+    
+    --font-family-primary : 'poppins', sans-serif;
+}

@@ -1,3 +1,5 @@
+@import './variables.sass';
+
 * {
   margin: 0;
   padding: 0;
@@ -8,10 +10,10 @@ body {
   font-family: system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   color: #333;
+  background-color: #fff;
 }
 
-.app {
-  width: 100%;
-  min-height: 100vh;
-  position: relative;
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
