@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from "react";
 
-import './ScrollExpand.css';
+import "./ScrollExpand.css";
 
 const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
 
@@ -10,12 +10,12 @@ const smoothstep = (edge0, edge1, x) => {
 };
 
 const ScrollExpand = ({
-  src = '',
-  mediaType = 'image',
-  poster = '',
-  alt = '',
-  title = '',
-  scrollHint = '',
+  src = "",
+  mediaType = "image",
+  poster = "",
+  alt = "",
+  title = "",
+  scrollHint = "",
   startWidth = 42,
   startHeight = 58,
   startRadius = 24,
@@ -28,7 +28,7 @@ const ScrollExpand = ({
   useWindowScroll = false,
   enabled = true,
   children,
-  className = '',
+  className = "",
   style,
   ...rest
 }) => {
@@ -54,10 +54,10 @@ const ScrollExpand = ({
     smoothing,
     overlayScrim,
     useWindowScroll,
-    enabled
+    enabled,
   };
 
-  const applyProgress = useCallback(p => {
+  const applyProgress = useCallback((p) => {
     const frame = frameRef.current;
     const media = mediaRef.current;
     if (!frame || !media) return;
@@ -74,7 +74,8 @@ const ScrollExpand = ({
 
     media.style.transform = `scale(${c.mediaZoom + (1 - c.mediaZoom) * e})`;
 
-    if (scrimRef.current) scrimRef.current.style.opacity = `${c.overlayScrim * e}`;
+    if (scrimRef.current)
+      scrimRef.current.style.opacity = `${c.overlayScrim * e}`;
 
     if (titleRef.current) {
       const out = smoothstep(0.4, 0.88, p);
@@ -101,7 +102,9 @@ const ScrollExpand = ({
     const stage = stageRef.current;
     if (!root || !track || !stage) return;
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     let raf = 0;
     let current = 0;
@@ -117,7 +120,10 @@ const ScrollExpand = ({
       track.style.height = `${stageH * (1 + Math.max(0, c.scrollDistance) + Math.max(0, c.holdDistance))}px`;
 
       const w = root.clientWidth || stageH;
-      stage.style.setProperty('--se-title-size', `${clamp(w * 0.075, 20, 84)}px`);
+      stage.style.setProperty(
+        "--se-title-size",
+        `${clamp(w * 0.075, 20, 84)}px`,
+      );
     };
 
     const readProgress = () => {
@@ -172,21 +178,21 @@ const ScrollExpand = ({
     applyProgress(current);
 
     const scroller = useWindowScroll ? window : root;
-    scroller.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onResize);
+    scroller.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
     const ro = new ResizeObserver(onResize);
     ro.observe(root);
 
     return () => {
       if (raf) cancelAnimationFrame(raf);
-      scroller.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onResize);
+      scroller.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
       ro.disconnect();
     };
   }, [applyProgress, useWindowScroll]);
 
   const media =
-    mediaType === 'video' ? (
+    mediaType === "video" ? (
       <video
         ref={mediaRef}
         className="scroll-expand__media"
@@ -198,13 +204,19 @@ const ScrollExpand = ({
         playsInline
       />
     ) : (
-      <img ref={mediaRef} className="scroll-expand__media" src={src} alt={alt} draggable={false} />
+      <img
+        ref={mediaRef}
+        className="scroll-expand__media"
+        src={src}
+        alt={alt}
+        draggable={false}
+      />
     );
 
   return (
     <div
       ref={rootRef}
-      className={`scroll-expand ${useWindowScroll ? '' : 'scroll-expand--scroller'} ${className}`.trim()}
+      className={`scroll-expand ${useWindowScroll ? "" : "scroll-expand--scroller"} ${className}`.trim()}
       style={style}
       {...rest}
     >
