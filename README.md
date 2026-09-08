@@ -2,6 +2,10 @@
 
 Projeto de portfólio pessoal desenvolvido com React e Vite. A aplicação está em andamento e reúne experimentos de animação, navegação interativa e mídia em tela cheia para apresentar a trajetória e os projetos de Bruno Ramos de Sousa.
 
+## Acesso online
+
+Acesse o portfólio publicado: [bruno-ramos-de-sousa.vercel.app](https://bruno-ramos-de-sousa.vercel.app/)
+
 ## Status
 
 🚧 Em desenvolvimento.
