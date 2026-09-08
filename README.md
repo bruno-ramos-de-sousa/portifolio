@@ -62,6 +62,15 @@ O Vite abrirá a aplicação em `http://localhost:5173`.
 | `npm run build` | Gera a versão de produção em `dist/`. |
 | `npm run preview` | Exibe localmente a versão gerada pelo build. |
 
+## Deploy na Vercel
+
+1. Envie o projeto para um repositório no GitHub, GitLab ou Bitbucket.
+2. Na Vercel, selecione `Add New Project` e importe o repositório.
+3. Mantenha `npm run build` como comando de build e `dist` como diretório de saída.
+4. Clique em `Deploy`.
+
+O arquivo `vercel.json` já deixa essas configurações definidas e mantém o fallback necessário para a aplicação React.
+
 ## Estrutura
 
 ```text

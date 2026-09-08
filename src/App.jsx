@@ -14,7 +14,7 @@ import AccordionGallery from "./components/AccordionGallery";
 import FoldText from "./components/FoldText";
 
 //Importando imagens e videos
-import titleVideo from "./assets/test.webm";
+import titleVideo from "./assets/hero.webm";
 import itaimBibiPhoto from "./assets/itaim_bibi.jpg";
 import paraibaPhoto from "./assets/paraiba.jpg";
 import parqueAclimacaoPhoto from "./assets/parque_aclimacao.jpg";
@@ -24,22 +24,28 @@ import euPhoto from "./assets/eu.jpg";
 const items = [
   {
     image: paraibaPhoto,
-    label: "",
+    label:
+      "Minha história começou quando meus pais deixaram a Paraíba e seguiram para São Paulo em busca de trabalho. Foi lá, por acaso, que suas histórias se encontraram.",
   },
   {
     image: parqueAclimacaoPhoto,
-    label: "",
+    label:
+      "Fui o caçula da família. Mesmo com pouco acesso, a tecnologia e os jogos sempre acenderam em mim uma curiosidade difícil de ignorar.",
   },
-  { image: itaimBibiPhoto,
-    label: "",
+  {
+    image: itaimBibiPhoto,
+    label:
+      "Aos 16 anos, comecei como jovem aprendiz na área administrativa. Foi ali que descobri o poder de transformar tarefas repetitivas em pequenas automações com Excel.",
   },
   {
     image: museuIpirangaPhoto,
-    label: "",
+    label:
+      "Depois, o interesse virou caminho: no curso técnico em Mecatrônica, encontrei minha primeira base de programação, entre máquinas CNC e os primeiros projetos com Arduino.",
   },
   {
     image: euPhoto,
-    label: "",
+    label:
+      "Hoje, essa busca continua na FATEC São Paulo e no SENAI Vila Mariana, onde estudo Desenvolvimento de Sistemas e transformo curiosidade em ferramentas reais.",
   },
 ];
 
@@ -63,35 +69,53 @@ function App() {
       rafId = requestAnimationFrame(raf);
     }
 
+    const handleAnchorClick = (event) => {
+      const link = event.target.closest('a[href^="#"]');
+      if (!link) return;
+
+      const hash = link.getAttribute("href");
+      if (!hash || hash === "#") return;
+
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      event.preventDefault();
+      window.history.pushState(null, "", hash);
+      lenis.scrollTo(target);
+    };
+
+    document.addEventListener("click", handleAnchorClick);
+
     rafId = requestAnimationFrame(raf);
 
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      document.removeEventListener("click", handleAnchorClick);
       window.removeEventListener("pageshow", resetScroll);
       window.history.scrollRestoration = previousScrollRestoration;
     };
   }, []);
   const navigationItems = [
     {
-      label: "Projects",
+      label: "Projetos",
       bgColor: "var(--primary-black)",
       textColor: "var(--off-white)",
       links: [
         {
-          label: "Featured",
+          label: "Projetos em destaque",
           href: "https://github.com/bruno-ramos-de-sousa",
           ariaLabel: "Featured Projects",
         },
       ],
     },
     {
-      label: "Contact",
+      label: "Contato",
       bgColor: "var(--primary-black)",
       textColor: "var(--off-white)",
       links: [
         {
-          label: "Email",
+          label: "E-mail",
           href: "mailto:brunoramosdsousa@gmail.com",
           ariaLabel: "Email us",
         },
@@ -108,7 +132,7 @@ function App() {
       ],
     },
     {
-      label: "About me",
+      label: "Sobre mim",
       bgColor: "var(--primary-black)",
       textColor: "var(--off-white)",
       links: [
@@ -118,12 +142,12 @@ function App() {
           ariaLabel: "Who am I?",
         },
         {
-          label: "Minha Historia",
-          href: "#",
+          label: "Minha história",
+          href: "#my-history",
           ariaLabel: "Minha Historia",
         },
         {
-          label: "Minha Habilidades",
+          label: "Minhas habilidades",
           href: "#",
           ariaLabel: "My Skills",
         },
@@ -156,7 +180,7 @@ function App() {
         items={navigationItems}
         baseColor="var(--off-white)"
         menuColor="var(--primary-black)"
-        buttonText="teste"
+        buttonText="Olá"
         buttonBgColor="var(--secondary-black)"
         buttonTextColor="var(--off-white)"
         ease="power3.out"
@@ -190,15 +214,19 @@ function App() {
           textScale={0.099}
         />
         <p id="profession">
-          Esse tal de Bruno diz ser estudante de Análise e Desenvolvimento de
-          Sistemas na Fatec São Paulo e de Desenvolvimento de Sistemas no Senai
-          Vila Mariana. Diz tambem que passou pela ETEC Getúlio Vargas como
-          técnico em Mecatrônica e por experiências como auxiliar
-          administrativo, além de cursos de Administração e Informática.
+          Bruno é estudante de Análise e Desenvolvimento de Sistemas na FATEC
+          São Paulo e de Desenvolvimento de Sistemas no SENAI Vila Mariana.
+          Antes disso, passou pela ETEC Getúlio Vargas, onde se formou técnico
+          em Mecatrônica, e acumulou experiências como auxiliar administrativo,
+          além de cursos de Administração e Informática.
         </p>
       </ScrollExpand>
 
-      <ScrollExpand scrollDistance={0.8} useWindowScroll id="my-history">
+      <ScrollExpand
+        scrollDistance={0.8}
+        useWindowScroll
+        endAnchorId="my-history"
+      >
         <FoldText
           text="Minha História"
           splitBy="char"

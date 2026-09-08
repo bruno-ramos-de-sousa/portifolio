@@ -84,8 +84,18 @@ const CardNav = ({
     const tl = createTimeline();
     tlRef.current = tl;
 
+    const resetNav = () => {
+      setIsHamburgerOpen(false);
+      setIsExpanded(false);
+      tlRef.current?.kill();
+      tlRef.current = createTimeline();
+    };
+
+    window.addEventListener("pageshow", resetNav);
+
     return () => {
       tl?.kill();
+      window.removeEventListener("pageshow", resetNav);
       tlRef.current = null;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
