@@ -4,6 +4,7 @@ import CardNav from "./components/CardNav";
 import ScrollExpand from "./components/ScrollExpand";
 import DarkVeil from "./components/DarkVeil";
 import Home from "./pages/Home";
+import MaskedHeading from './MaskedHeading';
 
 function App() {
   const navigationItems = [
@@ -41,17 +42,39 @@ function App() {
         },
       ],
     },
+    {
+      label: "About me",
+      bgColor: "var(--primary-black)",
+      textColor: "var(--off-white)",
+      links: [
+        {
+          label: "Quem sou eu?",
+          href: "#",
+          ariaLabel: "Who am I?",
+        },
+        {
+          label: "Minha Historia",
+          href: "#",
+          ariaLabel: "Minha Historia",
+        },
+        {
+          label: "Minha Habilidades",
+          href: "#",
+          ariaLabel: "My Skills",
+        },
+      ],
+    },
   ];
 
   return (
     <div className="app">
-      <div style={{ width: "100%", height: "100%", position: "absolute" }}>
+      <div style={{ width: "100%", height: "1200px", position: "absolute" }}>
         <DarkVeil
           hueShift={0}
           noiseIntensity={0}
           scanlineIntensity={0}
           speed={0.5}
-          scanlineFrequency={0.2}
+          scanlineFrequency={0}
           warpAmount={0}
         />
       </div>
@@ -67,16 +90,46 @@ function App() {
       />
       <Home />
       <ScrollExpand
-        src="/hero.jpg"
+        src="src/imgs/aclimacao_parque.jpg"
         alt="Product hero"
+        startWidth={0}
+        startHeight={0}
+        scrollDistance={1.3}
         title="Bruno Ramos de Sousa"
         scrollHint="Scroll inside the frame"
         useWindowScroll
       >
-        <h2>Every pixel, everywhere</h2>
+        
+        <MaskedHeading text="Quem e Bruno Ramos?" src="/hero.jpg" />
+        <MaskedHeading
+          text="Designed in the details"
+          mediaType="video"
+          src="/reel.mp4"
+          poster="/reel-poster.jpg"
+          fillScale={1.25}
+          parallax={26}
+          reveal="rise"
+          trigger="view"
+          drift={18}
+          brightness={1}
+          saturation={1}
+          grayscale={false}
+          duration={1.1}
+          stagger={0.09}
+          align="center"
+          weight={700}
+          tracking={-0.03}
+          lineHeight={1.06}
+          textScale={0.115}
+        />
         <p>
-          The frame opens up as you scroll and hands the whole stage to your
-          media.
+          Sou desenvolvedor e estudante de Análise e Desenvolvimento de Sistemas
+          na Fatec São Paulo e de Desenvolvimento de Sistemas no Senai Vila
+          Mariana. Minha trajetória também passou pelo Getúlio Vargas e por
+          experiências como auxiliar administrativo, além de cursos de
+          Administração e Informática. Venho de uma família humilde e
+          nordestina, uma história que carrego com orgulho enquanto sigo
+          construindo meu caminho na tecnologia.
         </p>
       </ScrollExpand>
       <div style={{ height: "520px" }}>
