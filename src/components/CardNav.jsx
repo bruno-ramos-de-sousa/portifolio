@@ -173,7 +173,7 @@ const CardNav = ({
             className="card-nav-cta-button"
             style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
           >
-            Get Started
+            Olá
           </button>
         </div>
 

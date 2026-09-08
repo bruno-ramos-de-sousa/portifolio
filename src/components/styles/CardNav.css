@@ -116,7 +116,7 @@
 
 .card-nav-cta-button {
   background: var(--off-white) !important;
-  color: #17121f !important;
+  color: var(--secondary-black) !important;
   border: 1px solid rgba(255, 255, 255, 0.75);
   border-radius: 0.68rem;
   padding: 0 1rem;
@@ -125,13 +125,8 @@
   cursor: pointer;
   transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18), inset 0 1px 0 #fff;
-}
-
-.card-nav-cta-button:hover {
-  background: rgba(255, 255, 255, 0.82) !important;
-  border-color: rgba(255, 255, 255, 1);
-  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18), inset 0 1px 0 var(--off-white);
+  cursor: auto;
 }
 
 .card-nav-content {
@@ -197,11 +192,11 @@
 .nav-card-link {
   font-size: 16px;
   cursor: pointer;
-  text-decoration: none;
   transition: opacity 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  color: var(--primary-grey);
 }
 
 .nav-card-link:hover {

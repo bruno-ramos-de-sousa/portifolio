@@ -7,7 +7,19 @@ import DarkVeil from "./components/DarkVeil";
 import MaskedHeading from "./components/MaskedHeading";
 import Home from "./pages/Home";
 
+import { useEffect } from 'react'
+import Lenis from '@studio-freight/lenis'
+
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({ duration: 1.2 });
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    return () => lenis.destroy();
+  }, []);
   const navigationItems = [
     {
       label: "Projects",
@@ -69,7 +81,7 @@ function App() {
 
   return (
     <div className="app">
-      <div style={{ width: "100%", height: "1200px", position: "absolute" }}>
+      <div style={{ width: "100%", height: "1200px", position: "absolute", pointerEvents: "none" }}>
         <DarkVeil
           hueShift={0}
           noiseIntensity={0}
@@ -84,8 +96,9 @@ function App() {
         logoAlt="Logo"
         items={navigationItems}
         baseColor="var(--off-white)"
-        menuColor="#000"
-        buttonBgColor="#111"
+        menuColor="var(--primary-black)"
+        buttonText="teste"
+        buttonBgColor="var(--secondary-black)"
         buttonTextColor="var(--off-white)"
         ease="power3.out"
       />
@@ -118,11 +131,11 @@ function App() {
           textScale={0.099}
         />
         <p id="profession">
-          Esse tal de Bruno diz ser estudante de Análise e Desenvolvimento de Sistemas
-          na Fatec São Paulo e de Desenvolvimento de Sistemas no Senai Vila
-          Mariana. Diz tambem que passou pela ETEC Getúlio Vargas como técnico em Mecatrônica e por
-          experiências como auxiliar administrativo, além de cursos de
-          Administração e Informática.
+          Esse tal de Bruno diz ser estudante de Análise e Desenvolvimento de
+          Sistemas na Fatec São Paulo e de Desenvolvimento de Sistemas no Senai
+          Vila Mariana. Diz tambem que passou pela ETEC Getúlio Vargas como
+          técnico em Mecatrônica e por experiências como auxiliar
+          administrativo, além de cursos de Administração e Informática.
         </p>
       </ScrollExpand>
     </div>
