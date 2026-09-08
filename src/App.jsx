@@ -1,6 +1,5 @@
 import "./styles/App.css";
 import { useEffect } from "react";
-import Lenis from "@studio-freight/lenis";
 
 //Importando as variaveis de estilo
 import "./styles/variables.css";
@@ -61,14 +60,6 @@ function App() {
     resetScroll();
     window.addEventListener("pageshow", resetScroll);
 
-    const lenis = new Lenis({ duration: 0.8 });
-    let rafId = 0;
-
-    function raf(time) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-
     const handleAnchorClick = (event) => {
       const link = event.target.closest('a[href^="#"]');
       if (!link) return;
@@ -81,16 +72,12 @@ function App() {
 
       event.preventDefault();
       window.history.pushState(null, "", hash);
-      lenis.scrollTo(target);
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
     };
 
     document.addEventListener("click", handleAnchorClick);
 
-    rafId = requestAnimationFrame(raf);
-
     return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
       document.removeEventListener("click", handleAnchorClick);
       window.removeEventListener("pageshow", resetScroll);
       window.history.scrollRestoration = previousScrollRestoration;
@@ -188,7 +175,8 @@ function App() {
 
       <ScrollExpand
         endAnchorId="who"
-        scrollDistance={1}
+        scrollDistance={0.6}
+        holdDistance={0}
         title="Bruno Ramos de Sousa"
         scrollHint="Scroll inside the frame"
         useWindowScroll
@@ -211,7 +199,7 @@ function App() {
           weight={700}
           tracking={0}
           lineHeight={1.06}
-          textScale={0.099}
+          textScale={0.1}
         />
         <p id="profession">
           Bruno é estudante de Análise e Desenvolvimento de Sistemas na FATEC
@@ -223,7 +211,8 @@ function App() {
       </ScrollExpand>
 
       <ScrollExpand
-        scrollDistance={0.8}
+        scrollDistance={0.1}
+        holdDistance={0.1}
         useWindowScroll
         endAnchorId="my-history"
       >
@@ -245,7 +234,7 @@ function App() {
           items={items}
           defaultIndex={2}
           expandRatio={0.52}
-          trigger="hover"
+          trigger="click"
           accentColor="var(--off-white)"
           overlayColor="var(--primary-black)"
           textColor="var(--off-white)"

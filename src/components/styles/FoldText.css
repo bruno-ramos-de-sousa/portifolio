@@ -113,3 +113,11 @@
     opacity: 0 !important;
   }
 }
+
+@media (max-width: 375px) {
+  .fold-text {
+    display: inline-block;
+    color: var(--fold-text-color, currentColor);
+    font-size: 3rem;
+  }
+}

@@ -24,3 +24,12 @@ html {
   width: 60%;
   text-align: center;
 }
+
+@media (max-width: 375px) {
+  #profession {
+  padding-top: var(--espacamento-lg);
+  font-size: 0.9rem;
+  width: 90%;
+  text-align: justify;
+}
+}
