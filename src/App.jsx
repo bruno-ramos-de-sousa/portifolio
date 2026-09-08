@@ -1,6 +1,11 @@
 import "./styles/App.css";
+import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
+
+//Importando as variaveis de estilo
 import "./styles/variables.css";
-import titleVideo from "./assets/test.webm";
+
+//Importanto todos os elementos do React bits
 import CardNav from "./components/CardNav";
 import ScrollExpand from "./components/ScrollExpand";
 import DarkVeil from "./components/DarkVeil";
@@ -8,30 +13,33 @@ import MaskedHeading from "./components/MaskedHeading";
 import AccordionGallery from "./components/AccordionGallery";
 import FoldText from "./components/FoldText";
 
-import { useEffect } from "react";
-import Lenis from "@studio-freight/lenis";
+//Importando imagens e videos
+import titleVideo from "./assets/test.webm";
+import itaimBibiPhoto from "./assets/itaim_bibi.jpg";
+import paraibaPhoto from "./assets/paraiba.jpg";
+import parqueAclimacaoPhoto from "./assets/parque_aclimacao.jpg";
+import museuIpirangaPhoto from "./assets/museu_ipiranga.jpg";
+import euPhoto from "./assets/eu.jpg";
 
 const items = [
   {
-    image: "https://picsum.photos/id/1015/900/1200",
-    label: "Canyon",
-    link: "",
+    image: paraibaPhoto,
+    label: "",
   },
   {
-    image: "https://picsum.photos/id/1018/900/1200",
-    label: "Ridgeline",
-    link: "",
+    image: parqueAclimacaoPhoto,
+    label: "",
   },
-  { image: "https://picsum.photos/id/1039/900/1200", label: "Falls", link: "" },
-  {
-    image: "https://picsum.photos/id/1043/900/1200",
-    label: "Harbour",
-    link: "",
+  { image: itaimBibiPhoto,
+    label: "",
   },
   {
-    image: "https://picsum.photos/id/1044/900/1200",
-    label: "Skyline",
-    link: "",
+    image: museuIpirangaPhoto,
+    label: "",
+  },
+  {
+    image: euPhoto,
+    label: "",
   },
 ];
 
@@ -190,9 +198,9 @@ function App() {
         </p>
       </ScrollExpand>
 
-      <ScrollExpand scrollDistance={0.8} useWindowScroll>
+      <ScrollExpand scrollDistance={0.8} useWindowScroll id="my-history">
         <FoldText
-          text="Design unfolds"
+          text="Minha História"
           splitBy="char"
           hinge="top"
           trigger="scroll-end"
@@ -210,9 +218,9 @@ function App() {
           defaultIndex={2}
           expandRatio={0.52}
           trigger="hover"
-          accentColor="#ffffff"
-          overlayColor="#060010"
-          textColor="#ffffff"
+          accentColor="var(--off-white)"
+          overlayColor="var(--primary-black)"
+          textColor="var(--off-white)"
           grayscale
           showLabels
           duration={0.6}
