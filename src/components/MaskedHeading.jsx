@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useId, useMemo, useRef } from 'react';
 import { gsap } from 'gsap';
 
-import './MaskedHeading.css';
+import './styles/MaskedHeading.css';
 
 const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
 

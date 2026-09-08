@@ -14,6 +14,7 @@
 .masked-heading__word {
   display: inline-block;
   white-space: pre;
+  text-shadow: 0 0 1px rgba(255,255,255, 0.7);
 }
 
 .masked-heading__word:not(:last-child)::after {

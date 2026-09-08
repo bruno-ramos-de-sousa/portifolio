@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 
-import "./ScrollExpand.css";
+import "./styles/ScrollExpand.css";
 
 const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
 
@@ -11,7 +11,7 @@ const smoothstep = (edge0, edge1, x) => {
 
 const ScrollExpand = ({
   src = "",
-  mediaType = "image",
+  mediaType = "video",
   poster = "",
   alt = "",
   title = "",
@@ -27,6 +27,7 @@ const ScrollExpand = ({
   overlayScrim = 0.45,
   useWindowScroll = false,
   enabled = true,
+  endAnchorId = "",
   children,
   className = "",
   style,
@@ -35,6 +36,7 @@ const ScrollExpand = ({
   const rootRef = useRef(null);
   const trackRef = useRef(null);
   const stageRef = useRef(null);
+  const endAnchorRef = useRef(null);
   const frameRef = useRef(null);
   const mediaRef = useRef(null);
   const titleRef = useRef(null);
@@ -118,6 +120,9 @@ const ScrollExpand = ({
       if (stageH <= 0) return;
       stage.style.height = `${stageH}px`;
       track.style.height = `${stageH * (1 + Math.max(0, c.scrollDistance) + Math.max(0, c.holdDistance))}px`;
+      if (endAnchorRef.current) {
+        endAnchorRef.current.style.top = `${stageH * Math.max(0, c.scrollDistance)}px`;
+      }
 
       const w = root.clientWidth || stageH;
       stage.style.setProperty(
@@ -221,6 +226,9 @@ const ScrollExpand = ({
       {...rest}
     >
       <div ref={trackRef} className="scroll-expand__track">
+        {endAnchorId ? (
+          <span ref={endAnchorRef} id={endAnchorId} className="scroll-expand__end-anchor" />
+        ) : null}
         <div ref={stageRef} className="scroll-expand__stage">
           <div ref={frameRef} className="scroll-expand__frame">
             {media}

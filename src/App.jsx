@@ -1,10 +1,11 @@
 import "./styles/App.css";
 import "./styles/variables.css";
+import titleVideo from "./assets/test.webm";
 import CardNav from "./components/CardNav";
 import ScrollExpand from "./components/ScrollExpand";
 import DarkVeil from "./components/DarkVeil";
+import MaskedHeading from "./components/MaskedHeading";
 import Home from "./pages/Home";
-import MaskedHeading from './MaskedHeading';
 
 function App() {
   const navigationItems = [
@@ -49,7 +50,7 @@ function App() {
       links: [
         {
           label: "Quem sou eu?",
-          href: "#",
+          href: "#who",
           ariaLabel: "Who am I?",
         },
         {
@@ -90,22 +91,16 @@ function App() {
       />
       <Home />
       <ScrollExpand
-        src="src/imgs/aclimacao_parque.jpg"
-        alt="Product hero"
-        startWidth={0}
-        startHeight={0}
-        scrollDistance={1.3}
+        endAnchorId="who"
+        scrollDistance={1.2}
         title="Bruno Ramos de Sousa"
         scrollHint="Scroll inside the frame"
         useWindowScroll
       >
-        
-        <MaskedHeading text="Quem e Bruno Ramos?" src="/hero.jpg" />
         <MaskedHeading
-          text="Designed in the details"
+          text="Quem é Bruno Ramos?"
           mediaType="video"
-          src="/reel.mp4"
-          poster="/reel-poster.jpg"
+          src={titleVideo}
           fillScale={1.25}
           parallax={26}
           reveal="rise"
@@ -114,40 +109,22 @@ function App() {
           brightness={1}
           saturation={1}
           grayscale={false}
-          duration={1.1}
-          stagger={0.09}
+          duration={1}
+          stagger={0}
           align="center"
           weight={700}
-          tracking={-0.03}
+          tracking={0}
           lineHeight={1.06}
-          textScale={0.115}
+          textScale={0.099}
         />
-        <p>
-          Sou desenvolvedor e estudante de Análise e Desenvolvimento de Sistemas
+        <p id="profession">
+          Esse tal de Bruno diz ser estudante de Análise e Desenvolvimento de Sistemas
           na Fatec São Paulo e de Desenvolvimento de Sistemas no Senai Vila
-          Mariana. Minha trajetória também passou pelo Getúlio Vargas e por
+          Mariana. Diz tambem que passou pela ETEC Getúlio Vargas como técnico em Mecatrônica e por
           experiências como auxiliar administrativo, além de cursos de
-          Administração e Informática. Venho de uma família humilde e
-          nordestina, uma história que carrego com orgulho enquanto sigo
-          construindo meu caminho na tecnologia.
+          Administração e Informática.
         </p>
       </ScrollExpand>
-      <div style={{ height: "520px" }}>
-        <ScrollExpand
-          src="/hero.jpg"
-          title="Built to scale"
-          mediaZoom={1.35}
-          startWidth={42}
-          startHeight={58}
-          startRadius={24}
-          endRadius={0}
-          scrollDistance={1.2}
-          holdDistance={0.35}
-          smoothing={0.1}
-          overlayScrim={0.45}
-          enabled
-        />
-      </div>
     </div>
   );
 }

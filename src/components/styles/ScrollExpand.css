@@ -21,6 +21,15 @@
   width: 100%;
 }
 
+.scroll-expand__end-anchor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
 .scroll-expand__stage {
   position: sticky;
   top: 0;
