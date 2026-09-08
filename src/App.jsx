@@ -5,20 +5,64 @@ import CardNav from "./components/CardNav";
 import ScrollExpand from "./components/ScrollExpand";
 import DarkVeil from "./components/DarkVeil";
 import MaskedHeading from "./components/MaskedHeading";
-import Home from "./pages/Home";
+import AccordionGallery from "./components/AccordionGallery";
+import FoldText from "./components/FoldText";
 
-import { useEffect } from 'react'
-import Lenis from '@studio-freight/lenis'
+import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
+
+const items = [
+  {
+    image: "https://picsum.photos/id/1015/900/1200",
+    label: "Canyon",
+    link: "",
+  },
+  {
+    image: "https://picsum.photos/id/1018/900/1200",
+    label: "Ridgeline",
+    link: "",
+  },
+  { image: "https://picsum.photos/id/1039/900/1200", label: "Falls", link: "" },
+  {
+    image: "https://picsum.photos/id/1043/900/1200",
+    label: "Harbour",
+    link: "",
+  },
+  {
+    image: "https://picsum.photos/id/1044/900/1200",
+    label: "Skyline",
+    link: "",
+  },
+];
 
 function App() {
   useEffect(() => {
-    const lenis = new Lenis({ duration: 1.2 });
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+
+    const resetScroll = () => {
+      window.scrollTo(0, 0);
+    };
+
+    resetScroll();
+    window.addEventListener("pageshow", resetScroll);
+
+    const lenis = new Lenis({ duration: 0.8 });
+    let rafId = 0;
+
     function raf(time) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
-    return () => lenis.destroy();
+
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+      window.removeEventListener("pageshow", resetScroll);
+      window.history.scrollRestoration = previousScrollRestoration;
+    };
   }, []);
   const navigationItems = [
     {
@@ -81,7 +125,14 @@ function App() {
 
   return (
     <div className="app">
-      <div style={{ width: "100%", height: "1200px", position: "absolute", pointerEvents: "none" }}>
+      <div
+        style={{
+          width: "100%",
+          height: "1200px",
+          position: "absolute",
+          pointerEvents: "none",
+        }}
+      >
         <DarkVeil
           hueShift={0}
           noiseIntensity={0}
@@ -102,10 +153,10 @@ function App() {
         buttonTextColor="var(--off-white)"
         ease="power3.out"
       />
-      <Home />
+
       <ScrollExpand
         endAnchorId="who"
-        scrollDistance={1.2}
+        scrollDistance={1}
         title="Bruno Ramos de Sousa"
         scrollHint="Scroll inside the frame"
         useWindowScroll
@@ -137,6 +188,43 @@ function App() {
           técnico em Mecatrônica e por experiências como auxiliar
           administrativo, além de cursos de Administração e Informática.
         </p>
+      </ScrollExpand>
+
+      <ScrollExpand scrollDistance={0.8} useWindowScroll>
+        <FoldText
+          text="Design unfolds"
+          splitBy="char"
+          hinge="top"
+          trigger="scroll-end"
+          duration={0.65}
+          stagger={0.045}
+          ease="power3.out"
+          perspective={700}
+          creaseShading={0.55}
+          fontSize={80}
+          fontWeight={800}
+          color="var(--off-white)"
+        />
+        <AccordionGallery
+          items={items}
+          defaultIndex={2}
+          expandRatio={0.52}
+          trigger="hover"
+          accentColor="#ffffff"
+          overlayColor="#060010"
+          textColor="#ffffff"
+          grayscale
+          showLabels
+          duration={0.6}
+          ease="power3.out"
+          parallax={0.5}
+          tilt={8}
+          stagger={0.06}
+          height={460}
+          gap={10}
+          radius={16}
+          orientation="horizontal"
+        />
       </ScrollExpand>
     </div>
   );

@@ -1,4 +1,4 @@
-@import '../../styles/variables.css';
+@import "../../styles/variables.css";
 
 .masked-heading {
   position: relative;
@@ -16,11 +16,11 @@
 .masked-heading__word {
   display: inline-block;
   white-space: pre;
-  text-shadow: 0 0 1px rgba(255,255,255, 0.7);
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
 .masked-heading__word:not(:last-child)::after {
-  content: ' ';
+  content: " ";
 }
 
 .masked-heading__baseline {

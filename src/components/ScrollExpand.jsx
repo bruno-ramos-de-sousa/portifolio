@@ -43,6 +43,7 @@ const ScrollExpand = ({
   const overlayRef = useRef(null);
   const scrimRef = useRef(null);
   const hintRef = useRef(null);
+  const completionSentRef = useRef(false);
 
   const propsRef = useRef({});
   propsRef.current = {
@@ -95,6 +96,11 @@ const ScrollExpand = ({
       const inn = smoothstep(0.68, 1, p);
       overlayRef.current.style.opacity = `${inn}`;
       overlayRef.current.style.transform = `translate3d(0, ${18 * (1 - inn)}px, 0)`;
+    }
+
+    if (p >= 1 && !completionSentRef.current) {
+      rootRef.current?.dispatchEvent(new CustomEvent("scroll-expand-end"));
+      completionSentRef.current = true;
     }
   }, []);
 
