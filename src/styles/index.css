@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-family-primary);
   line-height: 1.5;
   color: var(--off-white);
   background-color: var(--primary-black);
@@ -18,8 +18,8 @@ html {
 }
 
 #profession {
-  padding-top: 1rem;
-  font-size: 1.2rem;
+  padding-top: var(--espacamento-sm);
+  font-size: var(--font-size-md);
   width: 60%;
   text-align: center;
 }
@@ -27,7 +27,7 @@ html {
 @media (max-width: 375px) {
   #profession {
     padding-top: var(--espacamento-lg);
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
     width: 90%;
     text-align: justify;
   }

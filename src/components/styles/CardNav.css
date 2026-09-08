@@ -196,7 +196,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--primary-grey);
+  color: var(--primary-blue);
 }
 
 .nav-card-link:hover {

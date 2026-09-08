@@ -11,7 +11,7 @@
   max-width: 100%;
   perspective: 1400px;
   perspective-origin: 50% 50%;
-  margin-bottom: 10px;
+  margin-bottom: var(--espacamento-px-sm);
 }
 
 .accordion-gallery--vertical {
@@ -104,7 +104,7 @@
   color: var(--ag-text);
   font-family: inherit;
   font-weight: 600;
-  font-size: clamp(1rem, 1.4vw, 1.4rem);
+  font-size: clamp(var(--font-size-sm), 1.4vw, var(--font-size-lg));
   letter-spacing: 0.01em;
   line-height: 1.15;
   white-space: normal;

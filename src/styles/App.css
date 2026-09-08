@@ -17,9 +17,9 @@ html {
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-family-primary);
   line-height: 1.5;
-  color: #333;
+  color: var(--primary-black);
 }
 
 .app {
@@ -27,4 +27,3 @@ body {
   min-height: 100dvh;
   position: relative;
 }
-

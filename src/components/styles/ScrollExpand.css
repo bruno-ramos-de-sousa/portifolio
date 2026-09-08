@@ -108,7 +108,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 1.25rem;
+  bottom: var(--espacamento-md);
   text-align: center;
   font-size: 0.8125rem;
   letter-spacing: 0.02em;

@@ -1,6 +1,6 @@
 :root {
     --off-white: #f8f8f8;
-    --primary-grey: #5f5dff;
+    --primary-blue: #5f5dff;
     --primary-black: #000;
     --secondary-black: #212121;
 
@@ -16,5 +16,5 @@
     --font-size-md : 1.2rem;
     --font-size-sm : 1rem;
     
-    --font-family-primary : 'poppins', sans-serif;
+    --font-family-primary : system-ui, -apple-system, sans-serif;
 }
