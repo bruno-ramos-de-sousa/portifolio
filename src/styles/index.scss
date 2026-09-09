@@ -25,11 +25,30 @@ html {
   text-align: center;
 }
 
+h3 {
+  display: inline-block;
+  color: var(--off-white);
+  font-size: var(--title-size-lg);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  white-space: pre-wrap;
+  user-select: text;
+  margin-bottom: var(--espacamento-px-lg);
+  transition: ease-in 0.3s;
+}
+
 @media (max-width: 375px) {
   #profession {
-  padding-top: var(--espacamento-lg);
-  font-size: var(--font-size-sm);
-  width: 90%;
-  text-align: justify;
-}
+    padding-top: var(--espacamento-lg);
+    font-size: var(--font-size-sm);
+    width: 90%;
+    text-align: justify;
+  }
+
+  h3 {
+    display: inline-block;
+    color: var(--fold-text-color, currentColor);
+    font-size: 3rem;
+  }
 }

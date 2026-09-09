@@ -155,14 +155,14 @@ const AccordionGallery = ({
   );
 
   const handleEnter = i => {
-    if (trigger !== 'hover') return;
-    if (window.matchMedia('(max-width: 520px)').matches) return;
-    setActive(i);
+    if (trigger === 'hover') setActive(i);
   };
 
   const handleClick = (i, e) => {
-    e.preventDefault();
-    setActive(i);
+    if (i !== active) {
+      e.preventDefault();
+      setActive(i);
+    }
   };
 
   const handleKeyDown = (i, e) => {
@@ -185,7 +185,6 @@ const AccordionGallery = ({
         '--ag-text': textColor,
         '--ag-gap': `${gap}px`,
         '--ag-radius': `${radius}px`,
-        '--ag-mobile-expanded-height': `${height}px`,
         height: vertical ? `${Math.round(height * 1.6)}px` : `${height}px`
       }}
       role="list"

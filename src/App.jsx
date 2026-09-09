@@ -10,15 +10,14 @@ import ScrollExpand from "./components/ScrollExpand";
 import DarkVeil from "./components/DarkVeil";
 import MaskedHeading from "./components/MaskedHeading";
 import AccordionGallery from "./components/AccordionGallery";
-import FoldText from "./components/FoldText";
 
-//Importando imagens e videos
-import titleVideo from "./assets/hero.webm";
-import itaimBibiPhoto from "./assets/itaim_bibi.jpg";
-import paraibaPhoto from "./assets/paraiba.jpg";
-import parqueAclimacaoPhoto from "./assets/parque_aclimacao.jpg";
-import museuIpirangaPhoto from "./assets/museu_ipiranga.jpg";
-import euPhoto from "./assets/eu.jpg";
+//Caminho das imagens e videos
+const titleVideo = "/assets/hero.webm";
+const itaimBibiPhoto = "/assets/itaim_bibi.webp";
+const paraibaPhoto = "/assets/paraiba.webp";
+const parqueAclimacaoPhoto = "/assets/parque_aclimacao.webp";
+const museuIpirangaPhoto = "/assets/museu_ipiranga.webp";
+const euPhoto = "/assets/eu.webp";
 
 const items = [
   {
@@ -211,25 +210,12 @@ function App() {
       </ScrollExpand>
 
       <ScrollExpand
-        scrollDistance={0.1}
+        scrollDistance={0.3}
         holdDistance={0.1}
         useWindowScroll
         endAnchorId="my-history"
       >
-        <FoldText
-          text="Minha História"
-          splitBy="char"
-          hinge="top"
-          trigger="scroll-end"
-          duration={0.65}
-          stagger={0.045}
-          ease="power3.out"
-          perspective={700}
-          creaseShading={0.55}
-          fontSize={80}
-          fontWeight={800}
-          color="var(--off-white)"
-        />
+        <h3>Minha Historia</h3>
         <AccordionGallery
           items={items}
           defaultIndex={2}
