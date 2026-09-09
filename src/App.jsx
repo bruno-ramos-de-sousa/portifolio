@@ -226,7 +226,7 @@ function App() {
           textColor="var(--off-white)"
           grayscale
           showLabels
-          duration={0.6}
+          duration={0.4}
           ease="power3.out"
           parallax={0.5}
           tilt={8}

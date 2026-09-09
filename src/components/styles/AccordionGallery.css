@@ -1,12 +1,16 @@
 @import url("../../styles/variables.css");
 
 .accordion-gallery {
+  --ag-accent: #ffffff;
+  --ag-overlay: #060010;
+  --ag-text: #ffffff;
+  --ag-gap: 10px;
   --ag-radius: 16px;
   --ag-media-size: 320px;
 
   display: flex;
   flex-direction: row;
-  gap: var(--espacamento-px-sm);
+  gap: var(--ag-gap, var(--espacamento-px-sm));
   width: 100%;
   max-width: 100%;
   perspective: 1400px;
@@ -31,15 +35,15 @@
   outline: none;
   transform-style: preserve-3d;
   transform-origin: center center;
-  background: var(--secondary-black);
+  background: var(--secondary-black, #0a0713);
   box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.8);
-  will-change: transform, opacity, filter;
+  will-change: flex-grow, transform;
   -webkit-tap-highlight-color: transparent;
 }
 
 .ag-panel:focus-visible {
   box-shadow:
-    0 0 0 2px var(--off-white),
+    0 0 0 2px var(--ag-accent, var(--off-white)),
     0 10px 30px -18px rgba(0, 0, 0, 0.8);
 }
 
@@ -51,13 +55,15 @@
 }
 
 .ag-panel__media {
+  --ag-gray: 1;
+  --ag-dim: 0.35;
   position: absolute;
   top: 50%;
   left: 50%;
   width: var(--ag-media-size);
   height: 100%;
   filter: grayscale(var(--ag-gray));
-  will-change: transform, filter;
+  will-change: flex-grow, transform;
 }
 
 .accordion-gallery--vertical .ag-panel__media {
@@ -79,72 +85,64 @@
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--primary-black) 78%, transparent) 100%),
-    color-mix(in srgb, var(--primary-black) calc(var(--ag-dim, 0.35) * 100%), transparent);
+    linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--ag-overlay, var(--primary-black)) 78%, transparent) 100%),
+    color-mix(in srgb, var(--ag-overlay, var(--primary-black)) calc(var(--ag-dim, 0.35) * 100%), transparent);
 }
 
 .ag-panel__label {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: min(82%, 600px);
-  padding: 10px;
+  transform: translate(-50%, -50%);
+  width: min(85%, 600px);
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
   pointer-events: none;
   z-index: 2;
-  transform: translate(-50%, -50%);
-  opacity: 0.9;
 }
 
 .ag-panel__text {
   min-width: 0;
-  color: var(--ag-text);
+  color: var(--ag-text, var(--off-white));
   font-family: inherit;
   font-weight: 600;
-  font-size: clamp(var(--font-size-sm), 1.4vw, var(--font-size-lg));
+  font-size: clamp(var(--font-size-sm, 0.95rem), 1.35vw, var(--font-size-lg, 1.25rem));
   letter-spacing: 0.01em;
-  line-height: 1.15;
+  line-height: 1.4;
   white-space: normal;
   overflow-wrap: anywhere;
   text-align: center;
-  text-align: justify;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
-}
-
-.ag-panel__text {
-  opacity: 1;
+  opacity: 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 @media (max-width: 520px) {
   .accordion-gallery {
     flex-direction: column;
     perspective: none;
-    height: auto !important;
+    height: 520px !important;
     align-items: stretch;
   }
   .ag-panel {
-    flex: 0 0 84px !important;
-    height: 84px;
-    min-height: 84px;
+    min-height: 60px;
     transform: none !important;
-    transition: flex-basis 0.6s ease, height 0.6s ease;
-  }
-  .ag-panel.ag-panel--active {
-    flex-basis: min(var(--ag-mobile-expanded-height), 210px) !important;
-    height: min(var(--ag-mobile-expanded-height), 210px);
   }
   .accordion-gallery .ag-panel__media {
     width: 100%;
-    height: 100%;
+    height: var(--ag-media-size);
+  }
+  .ag-panel__text {
+    font-size: clamp(0.85rem, 3.2vw, 1.05rem);
+    line-height: 1.35;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .ag-panel,
-  .ag-panel__media {
+  .ag-panel__media,
+  .ag-panel__text {
     will-change: auto;
   }
 }
